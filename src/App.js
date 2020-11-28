@@ -6,10 +6,11 @@ import AddTodo from './components/AddTodo';
 import {v4 as uuid} from "uuid"; 
 import './App.css';
 import About from './components/pages/About';
+import axios from 'axios';
 
 class App extends Component {
   state = {
-    todos: [
+    /*todos: [
       {
         id: uuid(),
         title: 'Take out the trash',
@@ -26,6 +27,13 @@ class App extends Component {
         completed: false
       }
     ]
+    */
+   todos: []
+  }
+
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=20')
+    .then(res => this.setState({todos: res.data}) );
   }
 
     /**
